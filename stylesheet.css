@@ -37,6 +37,8 @@ body{
     text-decoration: none;
     font-family: Karla,sans-serif;
     letter-spacing: 2px;
+    transition: 0.4s;
+
 }
 
 .sidebar a:hover{
