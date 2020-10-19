@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
+body{
+    background-color: #ffffff;
+    margin: 0px;
+    font-family: Karla,sans-serif;
+   }
+
+/* Sidebar */
+.sidebar{
+    position: fixed;
+    width: 250px;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: black;
+    padding-top: 50px;
+}
+
+.sidebar h1{
+    color: #fff;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Karla,sans-serif;
+    letter-spacing: 2px;
+    font-weight: 400px;
+    margin: 0px;
+    font-size: 25px;
+    text-transform: uppercase;
+}
+
+.sidebar a{
+    color: #bbb;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Karla,sans-serif;
+    letter-spacing: 2px;
+}
+
+.sidebar a:hover{
+    color: #fff;
+    margin-left: 20px;
+    transition: 0.4s;
+}
+
+/* Icons */
+.icons {
+    position: block;
+    margin-left: 15%;
+    margin-top: 17%;
+    text-align: center;
+    cursor: pointer;
+}
+
+div img {
+    background-size: 100%;
+    background-position: center;
+    transition: 1s;
+    opacity: 0.6;
+}
+
+div img:hover {
+    opacity: 1;
+    background-position: center;
+}
+
+#rock:hover {
+    transform: scale(1.2);
+}
+
+#paper:hover {
+    transform: scale(1.2);
+}
+
+#scissors:hover {
+    transform: scale(1.2);
+}
+
+/* Result */
+p {
+    position: block;
+    margin-left: 14%;
+    color:black;
+    font-family: Karla, sans-serif;
+    font-weight: bold;
+    font-size:50px;
+    letter-spacing: 1px;
+    text-align: center;
+}
