@@ -26,7 +26,6 @@ function getWinner(playerMove) {
   randomNum = (Math.floor(Math.random() * 2));
 
   //computer move generator
- 
     if (randomNum === 0) {
       computerMove = 'rock';
     } else if (randomNum === 1) {
@@ -36,7 +35,6 @@ function getWinner(playerMove) {
     }
     console.log(computerMove);
     console.log(playerMove);
-  //}
 
 //draw/win/lose
   if (playerMove === computerMove) {
