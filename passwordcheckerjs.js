@@ -4,12 +4,14 @@ let isLoggedIn = false;
 let un;
 let pw;
 
+let loggedInOutBar = document.querySelector(".topLogin");
+
 function authenticateUser() {
     let tries = 3;
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
     if (pw == truePassword && un == trueUsername) {
-        console.log("Login Sucessful");
+        loggedInOutBar.innerHTML = "Hi "+un+" you are logged in";
         return true;
     }
     else {
@@ -17,7 +19,6 @@ function authenticateUser() {
         tries -= 1;
         return false;
     }
-
 
 }
 
@@ -43,7 +44,6 @@ function isUserLoggedIn() {
 
 function logOut() {
     if(isLoggedIn == true) {
-        alert("Hi, " + trueUsername + " you are now logged out!");
         isLoggedIn = false;
     }
     else if(isLoggedIn == false){
