@@ -1,33 +1,56 @@
-
 const truePassword = "b";
-const trueUsername = "b";
+const trueUsername = "Joseph";
+let isLoggedIn = false;
+let un;
+let pw;
 
 function authenticateUser() {
     let tries = 3;
-    while (tries > 0){
-        var un = prompt("Please enter the username");
-        var pw = prompt("Please enter the password.");
-        if (pw == truePassword && un == trueUsername) {
-            alert("Login Sucessful");
-            return true;
-            break;
-        }
-        else {
-            alert("Try Again");
-            tries -= 1;
-        }
-
+    un = document.querySelector("#inpUn").value;
+    pw = document.querySelector("#inpPw").value;
+    if (pw == truePassword && un == trueUsername) {
+        console.log("Login Sucessful");
+        return true;
     }
-    return false;
+    else {
+        alert("Try Again");
+        tries -= 1;
+        return false;
+    }
+
+
 }
 
 
-function isUserLoggedIn(isLoggedIn) {
-    if(isLoggedIn == true) {
-        return "Access Granted";
+function isUserLoggedIn() {
+    un = document.querySelector("#inpUn").value;
+    pw = document.querySelector("#inpPw").value;
+
+    if(un == "" || pw == ""){
+        alert("Please fill in all the fields");
+    }
+
+    else if(isLoggedIn == true) {
+        alert("Hi, " + trueUsername + " you are already logged in!");
+    }
+    else if(isLoggedIn == false){
+        isLoggedIn = authenticateUser();
     }
     else {
-        return "Access Denied";
+        alert("err");
+    }
+}
+
+function logOut() {
+    if(isLoggedIn == true) {
+        alert("Hi, " + trueUsername + " you are now logged out!");
+        isLoggedIn = false;
+    }
+    else if(isLoggedIn == false){
+        alert("You are already logged out!");
+    }
+    else {
+        alert("err");
     }
 }
 
