@@ -23,7 +23,7 @@ function gameIcon(clicked_id) {
 function getWinner(playerMove) {
 
   //random number generator for computer move
-  randomNum = (Math.floor(Math.random() * 2));
+  randomNum = (Math.floor(Math.random() * 3));
 
   //computer move generator
     if (randomNum === 0) {
