@@ -1,9 +1,13 @@
+
 const truePassword = "b";
+const trueUsername = "b";
+
 function authenticateUser() {
     let tries = 3;
     while (tries > 0){
+        var un = prompt("Please enter the username");
         var pw = prompt("Please enter the password.");
-        if (pw == truePassword) {
+        if (pw == truePassword && un == trueUsername) {
             alert("Login Sucessful");
             return true;
             break;
@@ -17,7 +21,6 @@ function authenticateUser() {
     return false;
 }
 
-let isLoggedIn = authenticateUser();
 
 function isUserLoggedIn(isLoggedIn) {
     if(isLoggedIn == true) {
@@ -28,5 +31,4 @@ function isUserLoggedIn(isLoggedIn) {
     }
 }
 
-let accessGranted = isUserLoggedIn();
-alert(isUserLoggedIn);
+
