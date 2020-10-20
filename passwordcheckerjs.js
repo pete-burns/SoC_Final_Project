@@ -1,11 +1,15 @@
 const truePassword = "b";
 const trueUsername = "Joseph";
+
 let isLoggedIn = false;
+
 let un;
 let pw;
 
 let loggedOutBar = document.querySelector(".topLogin");
 let loggedInBar = document.querySelector(".topLogout");
+
+loggedInBar.innerHTML = "Hi "+trueUsername+"!";
 
 let inputFieldUn = document.querySelector("#inpUn");
 let inputFieldPw = document.querySelector("#inpPw");
@@ -15,7 +19,7 @@ refreshStatus();
 function refreshStatus() {
     inputFieldUn.value = '';
     inputFieldPw.value = '';
-    if(localStorage.getItem(isLoggedIn) == 'true'){
+    if(window.localStorage.getItem(isLoggedIn) == 'true'){
         loggedOutBar.classList.add("invisible");
         loggedOutBar.classList.remove("visible");
 
@@ -53,8 +57,8 @@ function isUserLoggedIn() {
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
 
-    if(localStorage.getItem(isLoggedIn) == null){
-        localStorage.setItem(isLoggedIn, false);
+    if(window.localStorage.getItem(isLoggedIn) == null){
+        window.localStorage.setItem(isLoggedIn, false);
         refreshStatus();
     }
 
@@ -62,11 +66,11 @@ function isUserLoggedIn() {
         alert("Please fill in all the fields");
     }
 
-    else if(localStorage.getItem(isLoggedIn) == 'true') {
+    else if(window.localStorage.getItem(isLoggedIn) == 'true') {
         alert("Hi, " + trueUsername + " you are already logged in!");
     }
-    else if(localStorage.getItem(isLoggedIn) == 'false'){
-        localStorage.setItem(isLoggedIn, authenticateUser());
+    else if(window.localStorage.getItem(isLoggedIn) == 'false'){
+        window.localStorage.setItem(isLoggedIn, authenticateUser());
         refreshStatus();
     }
     else {
@@ -75,11 +79,11 @@ function isUserLoggedIn() {
 }
 
 function logOut() {
-    if(localStorage.getItem(isLoggedIn) == 'true') {
-        localStorage.setItem(isLoggedIn, false)
+    if(window.localStorage.getItem(isLoggedIn) == 'true') {
+        window.localStorage.setItem(isLoggedIn, false)
         refreshStatus();
     }
-    else if(localStorage.getItem(isLoggedIn) == 'false'){
+    else if(window.localStorage.getItem(isLoggedIn) == 'false'){
         alert("You are already logged out!");
     }
     else {
