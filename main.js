@@ -1,4 +1,3 @@
-
 let a = document.querySelector("#wins");
 let b = document.querySelector("#draws");
 let c = document.querySelector("#losses");
@@ -11,7 +10,6 @@ let wins = 0;
 let draws = 0;
 let losses = 0;
 
-
 //image id assigns it to playerMove
 function gameIcon(clicked_id) {
    playerMove = clicked_id;
@@ -23,16 +21,17 @@ function gameIcon(clicked_id) {
 function getWinner(playerMove) {
 
   //random number generator for computer move
-  randomNum = (Math.floor(Math.random() * 2));
+  randomNum = (Math.floor(Math.random() * 3));
 
   //computer move generator
     if (randomNum === 0) {
       computerMove = 'rock';
     } else if (randomNum === 1) {
       computerMove = 'paper';
-    } else {
+    } else{
       computerMove = 'scissors';
     }
+ 
     console.log(computerMove);
     console.log(playerMove);
 

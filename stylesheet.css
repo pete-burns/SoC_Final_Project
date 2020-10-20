@@ -115,15 +115,22 @@ div img:hover {
     text-align: center;
 }
 
-.topLogin {
+.topLoginMain {
     position: absolute;
     top: 1vh;
     right: 3vw;
     font-size: 1.5rem;
 }
-.topLogout {
+.topLogoutMain {
     position: absolute;
     top: 1vh;
     right: 3vw;
     font-size: 1.5rem;
+}
+
+.invisible {
+    display: none;
+}
+.visible {
+    display: block;
 }
