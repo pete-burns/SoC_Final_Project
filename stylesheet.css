@@ -22,6 +22,7 @@ body{
     bottom: 0px;
     background: black;
     padding-top: 50px;
+    height: 100vh;
 }
 
 .sidebar h1{
