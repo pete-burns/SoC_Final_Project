@@ -11,7 +11,7 @@ body{
     background-color: #ffffff;
     font-family: Karla,sans-serif;
     overflow: hidden;
-   }
+}
 
 /* Sidebar */
 .sidebar{
@@ -22,6 +22,7 @@ body{
     bottom: 0px;
     background: black;
     padding-top: 50px;
+    height: 100vh;
 }
 
 .sidebar h1{
