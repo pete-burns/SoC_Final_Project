@@ -101,11 +101,6 @@ function createAccount(){
     let isPwAuthentic = authenticatePw();
     let doesPwMatch = matchPw();
 
-    console.log(isUnAuthentic);
-    console.log(isEmAuthentic);
-    console.log(isPwAuthentic);
-    console.log(doesPwMatch);
-
     if(!isUnAuthentic){
         authErr.innerHTML = "Please make sure that you username is between 6 and 15 characters";
     }
@@ -120,6 +115,7 @@ function createAccount(){
     }
     else if(isUnAuthentic && isEmAuthentic && isPwAuthentic && doesPwMatch){
         authErr.innerHTML = "Hooray";
+        //create a new column on database
     }
 
 
