@@ -105,3 +105,9 @@ p {
     right: 3vw;
     font-size: 1.5rem;
 }
+.topLogout {
+    position: absolute;
+    top: 1vh;
+    right: 3vw;
+    font-size: 1.5rem;
+}
