@@ -1,33 +1,89 @@
-
 const truePassword = "b";
-const trueUsername = "b";
+const trueUsername = "Joseph";
+let isLoggedIn = false;
+let un;
+let pw;
 
-function authenticateUser() {
-    let tries = 3;
-    while (tries > 0){
-        var un = prompt("Please enter the username");
-        var pw = prompt("Please enter the password.");
-        if (pw == truePassword && un == trueUsername) {
-            alert("Login Sucessful");
-            return true;
-            break;
-        }
-        else {
-            alert("Try Again");
-            tries -= 1;
-        }
+let loggedOutBar = document.querySelector(".topLogin");
+let loggedInBar = document.querySelector(".topLogout");
 
+let inputFieldUn = document.querySelector("#inpUn");
+let inputFieldPw = document.querySelector("#inpPw");
+
+refreshStatus();
+
+function refreshStatus() {
+    inputFieldUn.value = '';
+    inputFieldPw.value = '';
+    if(localStorage.getItem(isLoggedIn) == 'true'){
+        loggedOutBar.classList.add("invisible");
+        loggedOutBar.classList.remove("visible");
+
+        loggedInBar.classList.remove("invisible");
+        loggedInBar.classList.add("visible");
     }
-    return false;
+    
+    else{
+        loggedOutBar.classList.add("visible");
+        loggedOutBar.classList.remove("invisible");
+
+        loggedInBar.classList.remove("visible");
+        loggedInBar.classList.add("invisible");
+    }
 }
 
 
-function isUserLoggedIn(isLoggedIn) {
-    if(isLoggedIn == true) {
-        return "Access Granted";
+function authenticateUser() {
+    let tries = 3;
+    un = document.querySelector("#inpUn").value;
+    pw = document.querySelector("#inpPw").value;
+    if (pw == truePassword && un == trueUsername) {
+        return true;
     }
     else {
-        return "Access Denied";
+        alert("Try Again");
+        tries -= 1;
+        return false;
+    }
+
+}
+
+
+function isUserLoggedIn() {
+    un = document.querySelector("#inpUn").value;
+    pw = document.querySelector("#inpPw").value;
+
+    if(localStorage.getItem(isLoggedIn) == null){
+        localStorage.setItem(isLoggedIn, false);
+        refreshStatus();
+    }
+
+    if(un == "" || pw == ""){
+        alert("Please fill in all the fields");
+    }
+
+    else if(localStorage.getItem(isLoggedIn) == 'true') {
+        alert("Hi, " + trueUsername + " you are already logged in!");
+    }
+    else if(localStorage.getItem(isLoggedIn) == 'false'){
+        localStorage.setItem(isLoggedIn, authenticateUser());
+        refreshStatus();
+    }
+    else {
+        alert("err");
+    }
+}
+
+function logOut() {
+    if(localStorage.getItem(isLoggedIn) == 'true') {
+        localStorage.setItem(isLoggedIn, false)
+        refreshStatus();
+    }
+    else if(localStorage.getItem(isLoggedIn) == 'false'){
+        alert("You are already logged out!");
+    }
+    else {
+        alert("err");
     }
 }
 
