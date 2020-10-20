@@ -17,8 +17,6 @@ let inputFieldPw = document.querySelector("#inpPw");
 refreshStatus();
 
 function refreshStatus() {
-    inputFieldUn.value = '';
-    inputFieldPw.value = '';
     if(window.localStorage.getItem(isLoggedIn) == 'true'){
         loggedOutBar.classList.add("invisible");
         loggedOutBar.classList.remove("visible");
@@ -63,7 +61,6 @@ function isUserLoggedIn() {
     }
 
     if(un == "" || pw == ""){
-        alert("Please fill in all the fields");
     }
 
     else if(window.localStorage.getItem(isLoggedIn) == 'true') {
