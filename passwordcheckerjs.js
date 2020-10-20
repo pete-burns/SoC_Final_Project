@@ -88,4 +88,16 @@ function logOut() {
     }
 }
 
+function createAccount(){
+    createUn = document.querySelector("#createUn").value;
+    createEm = document.querySelector("#createEm").value;
+    createPw = document.querySelector("#createPw").value;
+    confirmPw = document.querySelector("#confirmPw").value;
+
+    console.log(createUn);
+    console.log(createEm);
+    console.log(createPw);
+    console.log(confirmPw);
+}
+
 
