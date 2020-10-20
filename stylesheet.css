@@ -54,6 +54,21 @@ body{
     transition: 0.4s;
 }
 
+/*Wins/losses/draws*/
+.gametracker {
+    font-size: 16px;
+    color: #fff;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-family: Karla,sans-serif;
+    letter-spacing: 2px;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+
+  }
+
 /* Icons */
 .icons {
     position: block;
@@ -88,7 +103,7 @@ div img:hover {
 }
 
 /* Result */
-p {
+.results {
     position: block;
     margin-left: 14%;
     color:black;
