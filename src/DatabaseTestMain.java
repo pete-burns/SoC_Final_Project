@@ -71,30 +71,50 @@ public class DatabaseTestMain {
 
 
 //        Returns wins/losses/draws from db
-        try {
-            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
-            Connection openSqlConnection = databaseInterface.openConnection();
+//        try {
+//            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+//            Connection openSqlConnection = databaseInterface.openConnection();
+//
+//            System.out.println("connected");
+//
+//            Statement tableResults = openSqlConnection.createStatement();
+//            ResultSet results = tableResults.executeQuery(
+//                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = 'Pete'");
+//            while (results.next()) {
+//                int wins = results.getInt("wins");
+//                int losses = results.getInt("losses");
+//                int draws = results.getInt("draws");
+//
+//                System.out.println("Wins: " + wins + ", Losses: " + losses + " Draws: " + draws);
+//            }
+//
+//
+//
+//            tableResults.close();
+//            openSqlConnection.close();
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
 
-            System.out.println("connected");
 
-            Statement tableResults = openSqlConnection.createStatement();
-            ResultSet results = tableResults.executeQuery(
-                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = 'Pete'");
-            while (results.next()) {
-                int wins = results.getInt("wins");
-                int losses = results.getInt("losses");
-                int draws = results.getInt("draws");
+        //        This code will alter the table:
+//        try{
+//            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+//            Connection openSqlConnection = databaseInterface.openConnection();
+//
+//            System.out.println("connected");
+//
+//            Statement alterTable = openSqlConnection.createStatement();
+//            alterTable.executeUpdate(
+//                    "ALTER TABLE rps_table ADD email varchar(255)"
+//            );
+//            alterTable.close();
+//            openSqlConnection.close();
+//        }
+//        catch(Exception ex){
+//            ex.printStackTrace();
+//        }
 
-                System.out.println("Wins: " + wins + ", Losses: " + losses + " Draws: " + draws);
-            }
-
-
-
-            tableResults.close();
-            openSqlConnection.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
     }
 }
