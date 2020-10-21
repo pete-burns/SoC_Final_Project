@@ -14,11 +14,11 @@ loggedInBar.innerHTML = "Hi "+trueUsername+"!";
 let inputFieldUn = document.querySelector("#inpUn");
 let inputFieldPw = document.querySelector("#inpPw");
 
+authErr = document.querySelector("#authenticationError");
+
 refreshStatus();
 
 function refreshStatus() {
-    inputFieldUn.value = '';
-    inputFieldPw.value = '';
     if(window.localStorage.getItem(isLoggedIn) == 'true'){
         loggedOutBar.classList.add("invisible");
         loggedOutBar.classList.remove("visible");
@@ -63,7 +63,6 @@ function isUserLoggedIn() {
     }
 
     if(un == "" || pw == ""){
-        alert("Please fill in all the fields");
     }
 
     else if(window.localStorage.getItem(isLoggedIn) == 'true') {
@@ -91,4 +90,70 @@ function logOut() {
     }
 }
 
+function createAccount(){
+    createUn = document.querySelector("#createUn").value;
+    createEm = document.querySelector("#createEm").value;
+    createPw = document.querySelector("#createPw").value;
+    confirmPw = document.querySelector("#confirmPw").value;
+
+    let isUnAuthentic = authenticateUn();
+    let isEmAuthentic = authenticateEm();
+    let isPwAuthentic = authenticatePw();
+    let doesPwMatch = matchPw();
+
+    if(!isUnAuthentic){
+        authErr.innerHTML = "Please make sure that you username is between 6 and 15 characters";
+    }
+    else if(!isEmAuthentic){
+        authErr.innerHTML = "Please make sure that you enter a valid email";
+    }
+    else if(!isPwAuthentic){
+        authErr.innerHTML = "Please make sure that your password meets the criteria";
+    }
+    else if(!doesPwMatch){
+        authErr.innerHTML = "Please make sure that all your passwords match";
+    }
+    else if(isUnAuthentic && isEmAuthentic && isPwAuthentic && doesPwMatch){
+        authErr.innerHTML = "Hooray";
+        //create a new column on database
+    }
+
+
+}
+
+function authenticateUn(){
+    if(createUn.length <= 15 && createUn.length >= 6){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function authenticateEm(){
+    if((/.+@.+../.test(createEm))){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function authenticatePw(){
+    if(createPw.length <= 15 && createPw.length >= 6 && (/[a-z]/.test(createPw)) && (/[A-Z]/.test(createPw)) && (/[0-9]/.test(createPw)) ){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function matchPw(){
+    if(createPw === confirmPw){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 

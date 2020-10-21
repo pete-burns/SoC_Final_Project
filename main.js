@@ -66,3 +66,16 @@ function getWinner(playerMove) {
 gamePlays = gamePlays +1;
 
 }
+
+async function getScores(){
+
+  const response = await fetch("http://localhost:8080/rpsResults/Pete", {
+    mode: 'no-cors',
+  });
+
+  let responseData = await response.text();
+  console.log(response);
+  console.log(responseData);
+}
+
+getScores();
