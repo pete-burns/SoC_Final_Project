@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 
+@CrossOrigin(origins = "http://localhost:8080")
 @RestController
 @RequestMapping(path = "/rpsResults")
 
