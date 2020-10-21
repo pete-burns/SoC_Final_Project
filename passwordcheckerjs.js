@@ -1,6 +1,3 @@
-const truePassword = "b";
-const trueUsername = "Pete";
-
 //variable that determines if someone is logged in or not
 let isLoggedIn = false;
 
@@ -11,7 +8,7 @@ let pw;
 let loggedOutBar = document.querySelector(".topLogin");
 let loggedInBar = document.querySelector(".topLogout");
 
-loggedInBar.innerHTML = "Hi "+trueUsername+"!";
+loggedInBar.innerHTML = "Hi "+un+"!";
 
 let inputFieldUn = document.querySelector("#inpUn");
 let inputFieldPw = document.querySelector("#inpPw");
@@ -45,22 +42,23 @@ function refreshStatus() {
 let loginObj;
 
 //function checks if the username and password are valid
-function authenticateUser() {
-
+async function authenticateUser() {
+    
     //gets username and password - stores as object
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
     loginObj = {
         username: un,
-        password: pw,
+        password: pw
     };
 
+    let loginResult = await postLogin(loginObj);
     
-    if (pw == truePassword && un == trueUsername) {
+    if (loginResult.results != null) {
         return true;
     }
     else {
-        alert("Try Again");
+        alert("Username or password incorrect, please try again");
 
         //clears fields when user gets username or password wrong
         document.querySelector("#inpUn").value = "";
@@ -71,8 +69,20 @@ function authenticateUser() {
 
 }
 
+//send login info to database
+async function postLogin(loginObj){
+    const response = await fetch("http://127.0.0.1:8080/authAPI/", {
+        method: "POST",
+        body: JSON.stringify(loginObj),
+        headers: {"content-type": "application/JSON"}
+    });
+
+    let responseData = await response.json();
+    return responseData;
+}
+
 //function checks if user is logged in already, if not, runs the user authentication function
-function isUserLoggedIn() {
+async function isUserLoggedIn() {
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
 
@@ -88,14 +98,17 @@ function isUserLoggedIn() {
     }
 
     else if(window.localStorage.getItem(isLoggedIn) == 'true') {
-        alert("Hi, " + trueUsername + " you are already logged in!");
-    }
-    else if(window.localStorage.getItem(isLoggedIn) == 'false'){
-        window.localStorage.setItem(isLoggedIn, authenticateUser());
+        logOut();
+        let userAuth = await authenticateUser();
+        window.localStorage.setItem(isLoggedIn, userAuth);
         refreshStatus();
 
-        //post login information to DB
-        console.log(loginObj);
+    }
+    
+    else if(window.localStorage.getItem(isLoggedIn) == 'false'){
+        let userAuth = await authenticateUser();
+        window.localStorage.setItem(isLoggedIn, userAuth);
+        refreshStatus();
     }
     else {
         alert("err");
@@ -205,7 +218,7 @@ function matchPw(){
 
 async function getScores(){
 
-  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+trueUsername);
+  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+un);
 
   let responseData = await response.json();
 

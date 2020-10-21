@@ -81,7 +81,7 @@ public class rpsController {
     //
     // Authentification of user and returning username and results
     //
-    public UserAndResults getResults(String Username, String password) {
+    public UserAndResults getResults(String Username, String password) throws Exception {
 
         UserAndResults queryResults = null;
         try {
@@ -92,7 +92,7 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT Username FROM rps_table WHERE UserName = " + "'" + Username + "'" + "AND Password = '" + password+ "'");
+                    "SELECT username FROM rps_table WHERE username = " + "'" + Username + "'" + "AND password = '" + password+ "'");
 
             if (!results.next()) {
 // no matches in table - throw exception
@@ -102,6 +102,7 @@ public class rpsController {
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            throw ex;
         }
 
         PlayerResults playerResults = null;
