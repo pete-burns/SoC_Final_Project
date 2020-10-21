@@ -40,7 +40,7 @@ public class DatabaseTestMain {
 //
 //            Statement insertIntoTable = openSqlConnection.createStatement();
 //            insertIntoTable.executeUpdate(
-//                    "INSERT INTO rps_table ("+"username, "+"password)"+" VALUES (" + "'Pete', " + "'password'"+")"
+//                    "INSERT INTO rps_table ("+"username, "+"password)"+" VALUES (" + "'Tobi', " + "'c'"+")"
 //            );
 //            insertIntoTable.close();
 //            openSqlConnection.close();
@@ -59,8 +59,8 @@ public class DatabaseTestMain {
 //
 //            Statement updateTable = openSqlConnection.createStatement();
 //            updateTable.executeUpdate(
-//                    "UPDATE rps_table SET wins = 15, draws = 4, losses = 0" +
-//                            "WHERE UserName = 'Pete'"
+//                    "UPDATE rps_table SET wins = 35, draws = 8, losses = 8" +
+//                            "WHERE UserName = 'Tobi'"
 //
 //            );
 //            updateTable.close();
@@ -87,8 +87,6 @@ public class DatabaseTestMain {
 //
 //                System.out.println("Wins: " + wins + ", Losses: " + losses + " Draws: " + draws);
 //            }
-//
-//
 //
 //            tableResults.close();
 //            openSqlConnection.close();
