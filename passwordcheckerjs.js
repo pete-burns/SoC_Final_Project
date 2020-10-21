@@ -1,5 +1,5 @@
 const truePassword = "b";
-const trueUsername = "Joseph";
+const trueUsername = "Pete";
 
 let isLoggedIn = false;
 
@@ -25,6 +25,8 @@ function refreshStatus() {
 
         loggedInBar.classList.remove("invisible");
         loggedInBar.classList.add("visible");
+
+        getScores();
     }
     
     else{
@@ -155,5 +157,18 @@ function matchPw(){
     else{
         return false;
     }
+}
+
+
+async function getScores(){
+
+  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+trueUsername);
+
+  let responseData = await response.json();
+
+  console.log("wins "+responseData.wins);
+  console.log("losses "+responseData.losses);
+  console.log("draws "+responseData.draws);
+
 }
 
