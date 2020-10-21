@@ -40,4 +40,12 @@ public class rpsController {
         }
         return queryResults;
     }
+
+    // Authenticate user
+
+    // Add user
+
+    // Update user score
+
+    // Select all for leader board
 }
