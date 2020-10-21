@@ -14,9 +14,6 @@ public class ResultsAPI {
     @Autowired
     private rpsController controller;
 
-    // Implementing a GET method
-    // to get the list of all
-    // the employees
     @GetMapping(
             path = "/{name}",
             produces = "application/json")
