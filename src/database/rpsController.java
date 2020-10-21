@@ -40,12 +40,39 @@ public class rpsController {
         return queryResults;
     }
 
-    // Authenticate user
 
     // Add user
-
+//
+    //
+    //
     // Update user score
+     UpdateUserScore getResults(String username, int wins, int draws, int losses) {
 
+        UpdateUserScore queryResults = null;
+        try {
+            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+            Connection openSqlConnection = databaseInterface.openConnection();
+
+            System.out.println("connected");
+
+            Statement updateScores = openSqlConnection.createStatement();
+            ResultSet results = updateScores.executeQuery(
+                    "UPDATE rps_table SET wins = " + wins + ", draws = " + draws + ", losses = " + losses + "WHERE UserName = '" + username + "'");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+        return queryResults;
+    }
+
+
+
+
+    //
+    //
+    //
+    //
     // Select all for leader board
     public ArrayList<LeaderBoard> getResults() {
         ArrayList<LeaderBoard> queryResults = new ArrayList<>();
@@ -81,7 +108,7 @@ public class rpsController {
     //
     // Authentification of user and returning username and results
     //
-    public UserAndResults getResults(String Username, String password) throws Exception {
+    public UserAndResults getResults(String username, String password) throws Exception {
 
         UserAndResults queryResults = null;
         try {
@@ -92,7 +119,7 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT username FROM rps_table WHERE username = " + "'" + Username + "'" + "AND password = '" + password+ "'");
+                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'" + "AND password = '" + password+ "'");
 
             if (!results.next()) {
 // no matches in table - throw exception
@@ -114,7 +141,7 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = " + "'" + Username + "'");
+                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = " + "'" + username + "'");
             while (results.next()) {
                 int wins = results.getInt("wins");
                 int losses = results.getInt("losses");
@@ -130,6 +157,6 @@ public class rpsController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return new UserAndResults(Username, playerResults);
+        return new UserAndResults(username, playerResults);
     }
 }
