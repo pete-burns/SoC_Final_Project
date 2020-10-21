@@ -16,12 +16,12 @@ body{
 /* Sidebar */
 .sidebar{
     position: fixed;
-    width: 250px;
+    width: 15.625rem;
     top: 0px;
     left: 0px;
     bottom: 0px;
     background: black;
-    padding-top: 50px;
+    padding-top: 3.125rem;
     height: 100vh;
 }
 
@@ -51,7 +51,7 @@ body{
 
 .sidebar a:hover{
     color: #fff;
-    margin-left: 20px;
+    margin-left: 1.25rem;
     transition: 0.4s;
 }
 
@@ -84,6 +84,7 @@ div img {
     background-position: center;
     transition: 1s;
     opacity: 0.6;
+    width: 25rem;
 }
 
 div img:hover {
@@ -110,7 +111,7 @@ div img:hover {
     color:black;
     font-family: Karla, sans-serif;
     font-weight: bold;
-    font-size:50px;
+    font-size:3.125rem;
     letter-spacing: 1px;
     text-align: center;
 }
