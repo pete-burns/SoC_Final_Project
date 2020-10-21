@@ -16,13 +16,19 @@ body{
 /* Sidebar */
 .sidebar{
     position: fixed;
-    width: 15.625rem;
+    width: 15vw;
     top: 0px;
     left: 0px;
     bottom: 0px;
     background: black;
     padding-top: 3.125rem;
     height: 100vh;
+}
+
+@media(max-width: 1000px){
+    .sidebar{
+        width: 35vw;
+    }
 }
 
 .sidebar h1{
@@ -72,7 +78,6 @@ body{
 
 /* Icons */
 .icons {
-    position: block;
     margin-left: 15%;
     margin-top: 17%;
     text-align: center;
@@ -84,7 +89,7 @@ div img {
     background-position: center;
     transition: 1s;
     opacity: 0.6;
-    width: 25rem;
+    width: 25vw;
 }
 
 div img:hover {
