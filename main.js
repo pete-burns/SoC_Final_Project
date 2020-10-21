@@ -15,6 +15,21 @@ function gameIcon(clicked_id) {
    playerMove = clicked_id;
   //return playerMove;
   getWinner(playerMove);
+
+  if (playerMove === "rock") {
+    let clickRock = document.querySelector("#rockAudio");
+    clickRock.play();
+    console.log("playRock");
+  } else if (playerMove === "paper") {
+    let clickPaper = document.querySelector("#paperAudio");
+    clickPaper.play();
+    console.log("playPaper");
+  } else {
+    let clickScissors = document.querySelector("#scissorsAudio");
+    clickScissors.play();
+    console.log("playScissors");
+  }
+
 }
 
 //main game logic function
@@ -66,3 +81,4 @@ function getWinner(playerMove) {
 gamePlays = gamePlays +1;
 
 }
+
