@@ -7,19 +7,18 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(path = "/AuthAPI")
+@RequestMapping(path = "/authAPI")
 
 public class AuthAPI {
     @Autowired
     private rpsController controller;
     @PostMapping(
-            path = "",
+            path = "/",
             consumes = "application/json",
             produces = "application/json")
 
     public UserAndResults login(
-            @RequestBody Auth auth)
-    {
+            @RequestBody Auth auth) throws Exception {
 
 
         return controller
