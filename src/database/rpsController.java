@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import static database.HerokuDatabaseCredentials.SOC_POSTGRES_DATABASE;
 @Repository
@@ -48,4 +49,35 @@ public class rpsController {
     // Update user score
 
     // Select all for leader board
+    public ArrayList <LeaderBoard> getResults()
+    {
+        ArrayList <LeaderBoard> queryResults = new ArrayList<>();
+        try {
+            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+            Connection openSqlConnection = databaseInterface.openConnection();
+
+            System.out.println("connected");
+
+            Statement tableResults = openSqlConnection.createStatement();
+            ResultSet results = tableResults.executeQuery(
+                    "SELECT username, wins FROM rps_table ORDER BY wins desc LIMIT 10 ");
+            while (results.next()) {
+                String username = results.getString("username");
+                int wins = results.getInt("wins");
+//                int losses = results.getInt("losses");
+//                int draws = results.getInt("draws");
+
+                System.out.println("User name: "+ username +" Wins: " + wins);
+                queryResults.add (new LeaderBoard(username, wins));
+            }
+
+
+
+            tableResults.close();
+            openSqlConnection.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return queryResults;
+    }
 }
