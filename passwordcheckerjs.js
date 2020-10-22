@@ -2,13 +2,11 @@
 let isLoggedIn = false;
 
 //initialise variables that get inputted username and password
-let un;
 let pw;
+let un;
 
 let loggedOutBar = document.querySelector(".topLogin");
 let loggedInBar = document.querySelector(".topLogout");
-
-loggedInBar.innerHTML = "Hi "+un+"!";
 
 let inputFieldUn = document.querySelector("#inpUn");
 let inputFieldPw = document.querySelector("#inpPw");
@@ -25,6 +23,8 @@ function refreshStatus() {
 
         loggedInBar.classList.remove("invisible");
         loggedInBar.classList.add("visible");
+
+        loggedInBar.innerHTML = "Hi "+window.localStorage.getItem("username")+"!";
 
         getScores();
     }
@@ -47,10 +47,19 @@ async function authenticateUser() {
     //gets username and password - stores as object
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
-    loginObj = {
-        username: un,
-        password: pw
-    };
+
+    if(un == ""){
+        loginObj = {
+            username: window.localStorage.getItem("username"),
+            password: pw
+        };
+    }
+    else{
+        loginObj = {
+            username: un,
+            password: pw
+        };
+    }
 
     let loginResult = await postLogin(loginObj);
     
@@ -81,9 +90,11 @@ async function postLogin(loginObj){
     return responseData;
 }
 
+
 //function checks if user is logged in already, if not, runs the user authentication function
 async function isUserLoggedIn() {
     un = document.querySelector("#inpUn").value;
+    window.localStorage.setItem("username", JSON.stringify(un));
     pw = document.querySelector("#inpPw").value;
 
     //sets the logged in variable to false if it is null
@@ -129,10 +140,8 @@ function logOut() {
     }
 }
 
-let accountCreateObj;
-
 //function that authenticates and sends account creation information
-function createAccount(){
+async function createAccount(){
 
     //saves all values from textboxes as variables
     createUn = document.querySelector("#createUn").value;
@@ -162,17 +171,27 @@ function createAccount(){
         authErr.innerHTML = "Hooray";
 
         //create object to post credentials to database
-        accountCreateObj = {
+        let accountCreateObj = {
             username: createUn,
-            email: createEm,
             password: createPw,
+            email: createEm,
         };
 
         //post to database
-        console.log(accountCreateObj);
+        let accountResult = await postCreateAccount(accountCreateObj);
     }
+}
 
+//send create account info to database
+async function postCreateAccount(accountCreateObj){
+    const response = await fetch("http://127.0.0.1:8080/newUser/", {
+        method: "POST",
+        body: JSON.stringify(accountCreateObj),
+        headers: {"content-type": "application/JSON"}
+    });
 
+    let responseData = await response.json();
+    return responseData;
 }
 
 //checks if username meets criteria
@@ -222,9 +241,12 @@ async function getScores(){
 
   let responseData = await response.json();
 
-  console.log("wins "+responseData.wins);
-  console.log("losses "+responseData.losses);
-  console.log("draws "+responseData.draws);
+  let scoresObject = {
+      wins: responseData.wins,
+      losses: responseData.losses,
+      draws: responseData.draws
+  };
 
+  window.localStorage.setItem("scores", JSON.stringify(scoresObject));
 }
 
