@@ -242,7 +242,7 @@ function matchPw(){
 
 async function getScores(){
 
-  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+un);
+  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+JSON.parse(window.localStorage.getItem("username"))+"/");
 
   let responseData = await response.json();
 
