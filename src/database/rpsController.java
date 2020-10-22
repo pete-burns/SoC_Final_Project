@@ -44,7 +44,7 @@ public class rpsController {
     //
     //
     // Add user
-    NewUser getResults(String username, String password, String email) {
+    NewUser getResults(String username, String password, String email) throws Exception {
 
         NewUser queryResults = null;
         try {
@@ -55,11 +55,27 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'" + "AND password = '" + password+ "'");
+                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'");
 
-            if (results.next()) {
-// no matches in table - throw exception
-                throw new Exception("User Already exists");
+            if (!results.next()) {
+
+                try {
+
+                    System.out.println("connected");
+
+                    Statement insertIntoTable = openSqlConnection.createStatement();
+                    insertIntoTable.executeUpdate(
+                            "INSERT INTO rps_table (username, password, email, wins, losses, draws) VALUES ('" + username + "', '" + password + "', '" + email + "', 0, 0, 0)");
+                    queryResults = new NewUser(username,null,null);
+
+                    openSqlConnection.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+
+                }
+                return queryResults;
+
+
             }
 
             tableResults.close();
@@ -68,24 +84,10 @@ public class rpsController {
             ex.printStackTrace();
 
         }
-        try {
-            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
-            Connection openSqlConnection = databaseInterface.openConnection();
+        throw new Exception("User already exists");
 
-            System.out.println("connected");
-
-            Statement insertIntoTable = openSqlConnection.createStatement();
-            insertIntoTable.executeUpdate(
-                    "INSERT INTO rps_table (username, password, email, wins, losses, draws) VALUES ('" + username + "', '" + password + "', '" + email + "', 0, 0, 0)");
-            queryResults = new NewUser(username, password, email);
-
-            openSqlConnection.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-
-        }
-        return queryResults;
     }
+
 //  End of add user
 
 
