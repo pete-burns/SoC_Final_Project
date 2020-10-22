@@ -53,10 +53,33 @@ public class rpsController {
 
             System.out.println("connected");
 
+            Statement tableResults = openSqlConnection.createStatement();
+            ResultSet results = tableResults.executeQuery(
+                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'" + "AND password = '" + password+ "'");
+
+            if (results.next()) {
+// no matches in table - throw exception
+                throw new Exception("User Already exists");
+            }
+
+            tableResults.close();
+            openSqlConnection.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+        try {
+            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+            Connection openSqlConnection = databaseInterface.openConnection();
+
+            System.out.println("connected");
+
             Statement insertIntoTable = openSqlConnection.createStatement();
             insertIntoTable.executeUpdate(
                     "INSERT INTO rps_table (username, password, email, wins, losses, draws) VALUES ('" + username + "', '" + password + "', '" + email + "', 0, 0, 0)");
             queryResults = new NewUser(username, password, email);
+
+            openSqlConnection.close();
         } catch (Exception ex) {
             ex.printStackTrace();
 
@@ -86,6 +109,8 @@ public class rpsController {
                      updateScores.executeUpdate(
                      "UPDATE rps_table SET wins = " + wins + ", draws = " + draws + ", losses = " + losses + "WHERE UserName = '" + username + "'");
             updatedScore = new UpdateUserScore(username, wins, losses, draws);
+
+             openSqlConnection.close();
          } catch (Exception ex) {
              ex.printStackTrace();
          }
@@ -152,7 +177,8 @@ public class rpsController {
 // no matches in table - throw exception
             throw new Exception("User Invalid");
             }
-
+            tableResults.close();
+            openSqlConnection.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
