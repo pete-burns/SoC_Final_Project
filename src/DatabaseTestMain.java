@@ -113,6 +113,22 @@ public class DatabaseTestMain {
 //            ex.printStackTrace();
 //        }
 
-
+        //        This code will delete from the table:
+//        try {
+//            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+//            Connection openSqlConnection = databaseInterface.openConnection();
+//
+//            System.out.println("connected");
+//
+//            Statement alterTable = openSqlConnection.createStatement();
+//            alterTable.executeUpdate(
+//                    "DELETE FROM rps_table WHERE Username = 'josephSco';"
+//            );
+//            alterTable.close();
+//            openSqlConnection.close();
+//        } catch (Exception ex) {
+//            ex.printStackTrace();
+//        }
     }
 }
+
