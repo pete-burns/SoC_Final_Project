@@ -1,8 +1,11 @@
-
-        table {
-            font-family: Karla, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
+        #title{
+            font-family: Karla,sans-serif;
+            text-align: center;
+            font-size: 40px;
+            position: absolute;
+            width: 50vw;
+            margin-left: 32.5vw;
+            margin-top: 5vh;
         }
         td, th {
             border: 1px solid #cccccc;
@@ -16,17 +19,19 @@
 
         /* use sudo selector nth child to give a slightly different coloured background*/
         tr:nth-child(even) {
-            background-color: #dddddd;
+            background-color: white;
         }
 
-        tr:hover {
-            background-color:  black;
-            color: white;
-        }
+
             
         #RPSTable{
-            width:90vw;
-            margin: 5vh auto;
+            margin-top:25vh;
+            margin-left:32.5vw;
             border: solid black 2px;
             font-size: 2em;
+            font-family: Karla, sans-serif;
+            border-collapse: collapse;
+            width: 50vw;
+            position: absolute;
+            background-color: white;
         }
