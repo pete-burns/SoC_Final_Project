@@ -82,6 +82,7 @@ body{
     margin-top: 17%;
     text-align: center;
     cursor: pointer;
+    background-color:transparent
 }
 
 div img {
@@ -109,17 +110,98 @@ div img:hover {
     transform: scale(1.2);
 }
 
-/* Result */
 .results {
     position: block;
     margin-left: 14%;
     color:black;
     font-family: Karla, sans-serif;
     font-weight: bold;
-    font-size:3.125rem;
     letter-spacing: 1px;
     text-align: center;
+    font-size: 3vw;
 }
+
+@media only screen and (max-width: 1024px) and (min-width:768px) {
+    div img {
+        display: list-item;
+        margin: auto; 
+    }
+
+    .sidebar h1{
+       font-size: 120%;
+    }
+
+    .results {
+        font-size: 5vw;
+    }
+    
+    .sidebar a{
+        font-size: 80%;
+    }
+
+    .gametracker {
+        font-size: 80%;
+    }
+
+    #rock  {
+        width: 40%;
+    }
+
+    #scissors {
+        width: 40%;
+    }
+
+    #paper {
+        width: 40%;
+    }
+
+}
+
+
+@media only screen and (max-width: 767px) and (min-width:500px) {
+    div img {
+        display: list-item;
+        margin: auto; 
+    }
+
+    .results {
+        font-size: 5vw;
+    }
+}    
+
+@media only screen and (max-width: 499px) {
+    div img {
+        display: list-item;
+        margin: auto; 
+    }
+
+    .results {
+        font-size: 6vw;
+        margin-left: 25vw;
+    }
+
+    #rock  {
+        width: 40%;
+        height:50%;
+        margin-right:20vw;
+        margin-bottom:10vw;
+    }
+
+    #paper {
+            width: 40%;
+            height:50%;
+            margin-right:20vw;
+            margin-bottom:10vw;
+        }
+        
+    #scissors {
+        width: 40%;
+        height:50%;
+        margin-right:20vw;
+    }
+
+    
+} 
 
 .topLoginMain {
     position: absolute;
