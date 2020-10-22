@@ -39,32 +39,59 @@ public class rpsController {
         }
         return queryResults;
     }
-
-
-    // Add user
+// End of return game stats
 //
     //
     //
-    // Update user score
-     UpdateUserScore getResults(String username, int wins, int draws, int losses) {
+    // Add user
+    NewUser getResults(String username, String password, String email) {
 
-        UpdateUserScore queryResults = null;
+        NewUser queryResults = null;
         try {
             final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
             Connection openSqlConnection = databaseInterface.openConnection();
 
             System.out.println("connected");
 
-            Statement updateScores = openSqlConnection.createStatement();
-            ResultSet results = updateScores.executeQuery(
-                    "UPDATE rps_table SET wins = " + wins + ", draws = " + draws + ", losses = " + losses + "WHERE UserName = '" + username + "'");
-
+            Statement insertIntoTable = openSqlConnection.createStatement();
+            insertIntoTable.executeUpdate(
+                    "INSERT INTO rps_table (username, password, email, wins, losses, draws) VALUES ('" + username + "', '" + password + "', '" + email + "', 0, 0, 0)");
+            queryResults = new NewUser(username, password, email);
         } catch (Exception ex) {
             ex.printStackTrace();
 
         }
         return queryResults;
     }
+//  End of add user
+
+
+
+
+
+    //
+    //
+    // Update user score
+     UpdateUserScore getResults(String username, int wins, int draws, int losses) {
+
+//         UpdateUserScore queryResults = null;
+         UpdateUserScore updatedScore = null;
+         try {
+             final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+             Connection openSqlConnection = databaseInterface.openConnection();
+
+             System.out.println("connected");
+
+             Statement updateScores = openSqlConnection.createStatement();
+                     updateScores.executeUpdate(
+                     "UPDATE rps_table SET wins = " + wins + ", draws = " + draws + ", losses = " + losses + "WHERE UserName = '" + username + "'");
+            updatedScore = new UpdateUserScore(username, wins, losses, draws);
+         } catch (Exception ex) {
+             ex.printStackTrace();
+         }
+         return updatedScore;
+     }
+    //end of update scores
 
 
 
@@ -103,7 +130,7 @@ public class rpsController {
         }
         return queryResults;
     }
-    //
+    // End of select for leaderboard
     //
     //
     // Authentification of user and returning username and results
@@ -160,3 +187,4 @@ public class rpsController {
         return new UserAndResults(username, playerResults);
     }
 }
+// End of authentification
