@@ -2,6 +2,7 @@
 <html lang = "en">
 <head> 
 <link rel="stylesheet" href="scoresStyle.css">
+<script src="Scores.js"></script>
 <title> RPS_HiScore </title>
     </head>
 
@@ -23,123 +24,6 @@
 
         </table>
 
-        <script>
-        
-            let sortDirection = false;
-            //* this array of objects will be coming from the server, with a list of data from an API
-            let personData = [
-                { name: 'Sohaib', score: 100 },
-                { name: 'Callam', score: 102 },
-                { name: 'Pete', score: 105 },
-                { name: 'Tobi', score: 104 },
-                { name: 'Joseph', score: 101 }
-    
-            ];
-
-            async function getScores(){
-
-                const response = await fetch("http://127.0.0.1:8080/rpsResults/");
-
-                let responseData = await response.json();
-
-                console.log("wins "+responseData.wins);
-                console.log("losses "+responseData.losses);
-                console.log("draws "+responseData.draws);
-
-            }
-            getScores();
-    
-    
-            //* callback function "when this loads, go ahead and load the table data"
-            window.onload = () => {
-             loadTableData(personData);    
-            };
-    
-    
-    
-    
-    //        //* This function will inject the content
-    
-            function loadTableData(personData) {
-    console.log("load table data is working")
-    
-                const tableNames = document.getElementById('tableNames');
-                console.log(tableNames)
-
-                const tableScores = document.getElementById('tableScores');
-                console.log(tableScores)
-
-    
-                for(i=0; i<=personData.length-1; i++){
-                  console.log(personData[i].name)  
-                  
-                  let rowNames = document.createElement("tr")
-                  rowNames.innerText = personData[i].name
-
-                  let rowScores = document.createElement("tr")
-                  rowScores.innerText = personData[i].score
-
-                tableNames.appendChild(rowNames)  
-                tableScores.appendChild(rowScores)
-                       
-            
-            }
-                
-    
-    
-    
-            } 
-
-    //        //* This function will inject the content
-    
-    //         function loadTableData(personData) {
-    // console.log("load table data is working")
-    
-    //             const tableBody = document.getElementById('tableData');
-    //             console.log(tableBody)
-    
-    //             //*append all the Html string and inject it in to the inner Html
-    //             let dataHtml = '';
-    
-    //             for(let person of personData) {
-    //                 dataHtml += `<tr><td>${person.name}</td><td>${person.score}</td></tr>`; 
-    //                 /*the dollar sign should be blue and active!!!!!*/
-    
-    //             }
-    
-    
-    
-    //         }
-            
-            //loadtableData(personData); Don't need to run this as it is already being run
-
-            function sortColumn(columnName) { 
-                const dataType = typeof personData[0][columnName];
-                sortDirection = !sortDirection; 
-    
-                switch(dataType) {
-                    /*if case is number, go ahead and sort column number*/
-                    case 'number' :
-                    sortNumberColumn(sortDirection, columnName);
-                    break;
-    
-                }
-                
-                
-    
-    
-            }
-    
-            function sortNumberColumn(sort, columnName) {
-    
-                /* take original table data and reset it to table data.sort take in a call back function*/
-                personData = personData.sort((pl, p2) => {
-                    return sort ? p1[columnName] - p2[coulumnName] : p2[coulumnName] - p1[columnName]
-                });
-    
-            }
-    
-        </script>
     </body>
 
 
