@@ -82,3 +82,9 @@ gamePlays = gamePlays +1;
 
 }
 
+
+let scoresObject = JSON.parse(window.localStorage.getItem("scores"));
+let scoresWins = scoresObject.wins;
+console.log("wins "+scoresWins);
+console.log("draws "+scoresWins);
+console.log("losses "+scoresWins);

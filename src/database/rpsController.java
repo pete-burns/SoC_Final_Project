@@ -39,13 +39,94 @@ public class rpsController {
         }
         return queryResults;
     }
-
-    // Authenticate user
-
+// End of return game stats
+//
+    //
+    //
     // Add user
+    NewUser getResults(String username, String password, String email) throws Exception {
 
+        NewUser queryResults = null;
+        try {
+            final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+            Connection openSqlConnection = databaseInterface.openConnection();
+
+            System.out.println("connected");
+
+            Statement tableResults = openSqlConnection.createStatement();
+            ResultSet results = tableResults.executeQuery(
+                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'");
+
+            if (!results.next()) {
+
+                try {
+
+                    System.out.println("connected");
+
+                    Statement insertIntoTable = openSqlConnection.createStatement();
+                    insertIntoTable.executeUpdate(
+                            "INSERT INTO rps_table (username, password, email, wins, losses, draws) VALUES ('" + username + "', '" + password + "', '" + email + "', 0, 0, 0)");
+                    queryResults = new NewUser(username,null,null);
+
+                    openSqlConnection.close();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+
+                }
+                return queryResults;
+
+
+            }
+
+            tableResults.close();
+            openSqlConnection.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+        }
+        throw new Exception("User already exists");
+
+    }
+
+//  End of add user
+
+
+
+
+
+    //
+    //
     // Update user score
+     UpdateUserScore getResults(String username, int wins, int draws, int losses) {
 
+//         UpdateUserScore queryResults = null;
+         UpdateUserScore updatedScore = null;
+         try {
+             final DatabaseConnectionInterface databaseInterface = new PostgresAdapter(SOC_POSTGRES_DATABASE);
+             Connection openSqlConnection = databaseInterface.openConnection();
+
+             System.out.println("connected");
+
+             Statement updateScores = openSqlConnection.createStatement();
+                     updateScores.executeUpdate(
+                     "UPDATE rps_table SET wins = " + wins + ", draws = " + draws + ", losses = " + losses + "WHERE UserName = '" + username + "'");
+            updatedScore = new UpdateUserScore(username, wins, losses, draws);
+
+             openSqlConnection.close();
+         } catch (Exception ex) {
+             ex.printStackTrace();
+         }
+         return updatedScore;
+     }
+    //end of update scores
+
+
+
+
+    //
+    //
+    //
+    //
     // Select all for leader board
     public ArrayList<LeaderBoard> getResults() {
         ArrayList<LeaderBoard> queryResults = new ArrayList<>();
@@ -76,12 +157,12 @@ public class rpsController {
         }
         return queryResults;
     }
-    //
+    // End of select for leaderboard
     //
     //
     // Authentification of user and returning username and results
     //
-    public UserAndResults getResults(String Username, String password) {
+    public UserAndResults getResults(String username, String password) throws Exception {
 
         UserAndResults queryResults = null;
         try {
@@ -92,16 +173,18 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT Username FROM rps_table WHERE UserName = " + "'" + Username + "'" + "AND Password = '" + password+ "'");
+                    "SELECT username FROM rps_table WHERE username = " + "'" + username + "'" + "AND password = '" + password+ "'");
 
             if (!results.next()) {
 // no matches in table - throw exception
             throw new Exception("User Invalid");
             }
-
+            tableResults.close();
+            openSqlConnection.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
+            throw ex;
         }
 
         PlayerResults playerResults = null;
@@ -113,7 +196,7 @@ public class rpsController {
 
             Statement tableResults = openSqlConnection.createStatement();
             ResultSet results = tableResults.executeQuery(
-                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = " + "'" + Username + "'");
+                    "SELECT wins, losses, draws FROM rps_table WHERE UserName = " + "'" + username + "'");
             while (results.next()) {
                 int wins = results.getInt("wins");
                 int losses = results.getInt("losses");
@@ -129,6 +212,7 @@ public class rpsController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return new UserAndResults(Username, playerResults);
+        return new UserAndResults(username, playerResults);
     }
 }
+// End of authentification
