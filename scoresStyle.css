@@ -1,0 +1,32 @@
+
+        table {
+            font-family: Karla, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        td, th {
+            border: 1px solid #cccccc;
+            padding: 8px;  
+        }
+
+        th {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        /* use sudo selector nth child to give a slightly different coloured background*/
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+
+        tr:hover {
+            background-color:  black;
+            color: white;
+        }
+            
+        #RPSTable{
+            width:90vw;
+            margin: 5vh auto;
+            border: solid black 2px;
+            font-size: 2em;
+        }
