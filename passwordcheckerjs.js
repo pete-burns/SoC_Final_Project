@@ -3,6 +3,7 @@ let isLoggedIn = false;
 
 //initialise variables that get inputted username and password
 let pw;
+let un;
 
 let loggedOutBar = document.querySelector(".topLogin");
 let loggedInBar = document.querySelector(".topLogout");
@@ -22,8 +23,6 @@ function refreshStatus() {
 
         loggedInBar.classList.remove("invisible");
         loggedInBar.classList.add("visible");
-
-        window.localStorage.setItem("username", JSON.stringify(un));
 
         loggedInBar.innerHTML = "Hi "+window.localStorage.getItem("username")+"!";
 
@@ -48,10 +47,19 @@ async function authenticateUser() {
     //gets username and password - stores as object
     un = document.querySelector("#inpUn").value;
     pw = document.querySelector("#inpPw").value;
-    loginObj = {
-        username: un,
-        password: pw
-    };
+
+    if(un == ""){
+        loginObj = {
+            username: window.localStorage.getItem("username"),
+            password: pw
+        };
+    }
+    else{
+        loginObj = {
+            username: un,
+            password: pw
+        };
+    }
 
     let loginResult = await postLogin(loginObj);
     
