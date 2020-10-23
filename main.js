@@ -4,6 +4,8 @@ let c = document.querySelector("#losses");
 
 let displayResult = document.querySelector(".results");
 
+let un;
+
 let play = true; 
 let gamePlays = 0;
 let wins = 0;
@@ -88,9 +90,10 @@ function getWinner(playerMove) {
     losses: overallLosses,
     draws: overallDraws
   };
-
-  let scoresSent = postScores(scoreSendObject);
-  console.log(JSON.stringify(scoresSent));
+  un = localStorage.getItem("isLoggedIn");
+  if(un == 'true'){
+    postScores(scoreSendObject);
+  }
 }
 
 let scoresWins = window.localStorage.getItem("wins");
