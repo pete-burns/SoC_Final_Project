@@ -19,15 +19,15 @@ function gameIcon(clicked_id) {
   if (playerMove === "rock") {
     let clickRock = document.querySelector("#rockAudio");
     clickRock.play();
-    console.log("playRock");
+    //console.log("playRock");
   } else if (playerMove === "paper") {
     let clickPaper = document.querySelector("#paperAudio");
     clickPaper.play();
-    console.log("playPaper");
+    //console.log("playPaper");
   } else {
     let clickScissors = document.querySelector("#scissorsAudio");
     clickScissors.play();
-    console.log("playScissors");
+    //console.log("playScissors");
   }
 
 }
@@ -47,44 +47,70 @@ function getWinner(playerMove) {
       computerMove = 'scissors';
     }
  
-    console.log(computerMove);
-    console.log(playerMove);
+    //console.log(computerMove);
+    //console.log(playerMove);
 
 //draw/win/lose
   if (playerMove === computerMove) {
     draws = draws + 1;
-    console.log("It's a draw!");
+    //console.log("It's a draw!");
     displayResult.innerText = "It's a draw!";
   } else if (playerMove === 'rock' && computerMove !== 'paper') {
     wins = wins + 1;
-    console.log("You win!");
+    //console.log("You win!");
     displayResult.innerText = "You win!";
   } else if (playerMove === 'paper' && computerMove !== 'scissors') {
     wins = wins + 1;
-    console.log("You win!");
+    //console.log("You win!");
     displayResult.innerText = "You win!";
   } else if (playerMove === 'scissors' && computerMove !== 'rock') {
     wins = wins + 1;
-    console.log("You win!");
+    //console.log("You win!");
     displayResult.innerText = "You win!";
   } else {
     losses = losses + 1;
-    console.log("You lose!");
+    //console.log("You lose!");
     displayResult.innerText = "You lose!";
   }
   
-  a.innerText = "Wins: " + wins;
-  b.innerText = "Draws: " + draws;
-  c.innerText = "Loses: " + losses;
+  var overallWins = parseInt(scoresWins)+wins;
+  var overallDraws = parseInt(scoresDraws)+draws;
+  var overallLosses = parseInt(scoresLosses)+losses;
 
-  //games played total 
-gamePlays = gamePlays +1;
+  a.innerText = "Wins: " + overallWins;
+  b.innerText = "Draws: " + overallDraws;
+  c.innerText = "Loses: " + overallLosses;
 
+  //post scores to database
+  let scoreSendObject = {
+    username: JSON.parse(window.localStorage.getItem("username")),
+    wins: overallWins,
+    losses: overallLosses,
+    draws: overallDraws
+  };
+
+  let scoresSent = postScores(scoreSendObject);
+  console.log(JSON.stringify(scoresSent));
 }
 
+let scoresWins = window.localStorage.getItem("wins");
+let scoresDraws= window.localStorage.getItem("draws");
+let scoresLosses = window.localStorage.getItem("losses");
 
-let scoresObject = JSON.parse(window.localStorage.getItem("scores"));
-let scoresWins = scoresObject.wins;
-console.log("wins "+scoresWins);
-console.log("draws "+scoresWins);
-console.log("losses "+scoresWins);
+a.innerText = "Wins: " + scoresWins;
+b.innerText = "Draws: " + scoresDraws;
+c.innerText = "Loses: " + scoresLosses;
+
+
+//post scores to database
+async function postScores(scoreSendObject){
+
+  const response = await fetch("http://127.0.0.1:8080/updateUserScoreAPI/", {
+      method: "POST",
+      body: JSON.stringify(scoreSendObject),
+      headers: {"content-type": "application/JSON"}
+  });
+
+  let responseData = await response.json();
+  return responseData;
+}

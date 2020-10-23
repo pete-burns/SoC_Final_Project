@@ -24,7 +24,7 @@ function refreshStatus() {
         loggedInBar.classList.remove("invisible");
         loggedInBar.classList.add("visible");
 
-        loggedInBar.innerHTML = "Hi "+window.localStorage.getItem("username")+"!";
+        loggedInBar.innerHTML = "Hi "+JSON.parse(window.localStorage.getItem("username"))+"!";
 
         getScores();
     }
@@ -168,9 +168,8 @@ async function createAccount(){
         authErr.innerHTML = "Please make sure that all your passwords match";
     }
     else if(isUnAuthentic && isEmAuthentic && isPwAuthentic && doesPwMatch){
-        authErr.innerHTML = "Hooray";
-
         //create object to post credentials to database
+
         let accountCreateObj = {
             username: createUn,
             password: createPw,
@@ -179,6 +178,13 @@ async function createAccount(){
 
         //post to database
         let accountResult = await postCreateAccount(accountCreateObj);
+        if(accountResult.username == undefined){
+            authErr.innerHTML = "Username Already Taken";
+        }
+        else{
+            authErr.innerHTML = "Account Created";
+        }
+
     }
 }
 
@@ -234,19 +240,14 @@ function matchPw(){
     }
 }
 
-
 async function getScores(){
 
-  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+un);
+  const response = await fetch("http://127.0.0.1:8080/rpsResults/"+JSON.parse(window.localStorage.getItem("username"))+"/");
 
   let responseData = await response.json();
 
-  let scoresObject = {
-      wins: responseData.wins,
-      losses: responseData.losses,
-      draws: responseData.draws
-  };
+    window.localStorage.setItem("wins", responseData.wins);
+    window.localStorage.setItem("draws", responseData.draws);
+    window.localStorage.setItem("losses", responseData.losses);
 
-  window.localStorage.setItem("scores", JSON.stringify(scoresObject));
 }
-
