@@ -3,6 +3,7 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+
   <component name="ChangeListManager">
     <list default="true" id="d30eb4fc-2a2a-4cba-b375-35c48b40a925" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -11,6 +12,7 @@
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/passwordcheckerhtml.html" beforeDir="false" afterPath="$PROJECT_DIR$/passwordcheckerhtml.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scoresStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/scoresStyle.css" afterDir="false" />
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,8 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
 
+
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -29,13 +33,16 @@
     </option>
   </component>
 
+
   <component name="ProjectId" id="1jEIFbJqFqf8fZCBkRjxlgVT5dL" />
 
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+
 
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
@@ -66,20 +73,24 @@
 
       </list>
     </recent_temporary>
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+
 
       <changelist id="d30eb4fc-2a2a-4cba-b375-35c48b40a925" name="Default Changelist" comment="" />
       <created>1603362721712</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603362721712</updated>
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
     </task>
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
@@ -108,5 +119,6 @@
     <state width="1750" height="215" key="GridCell.Tab.0.right/0.0.1792.1120@0.0.1792.1120" timestamp="1603362697166" />
     <state width="1750" height="318" key="GridCell.Tab.0.right/0.23.1792.1017@0.23.1792.1017" timestamp="1603405085447" />
 
+>>>>>>> a6a74d9395eb7a29b07899d5bef844779cd3ac3b
   </component>
 </project>
