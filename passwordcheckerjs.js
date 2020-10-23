@@ -35,6 +35,10 @@ function refreshStatus() {
 
         loggedInBar.classList.remove("visible");
         loggedInBar.classList.add("invisible");
+
+        window.localStorage.setItem("wins", 0);
+        window.localStorage.setItem("draws", 0);
+        window.localStorage.setItem("losses", 0);
     }
 }
 
