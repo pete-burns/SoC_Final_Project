@@ -1,11 +1,4 @@
-import database.PostgresAdapter;
 import database.DatabaseConnectionInterface;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
-
-import static database.HerokuDatabaseCredentials.SOC_POSTGRES_DATABASE;
 
 public class DatabaseTestMain {
 
