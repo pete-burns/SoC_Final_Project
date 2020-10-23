@@ -1,7 +1,6 @@
 package database;
 
 import database.DatabaseConnectionInterface;
-import database.HerokuDatabaseCredentials;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

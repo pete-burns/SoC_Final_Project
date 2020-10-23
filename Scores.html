@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
+    <link rel="stylesheet" href="stylesheet.css">
+    <title>Rock, Paper, Scissors.</title>
 <head> 
 <link rel="stylesheet" href="scoresStyle.css">
 <script src="Scores.js"></script>
@@ -7,11 +9,20 @@
     </head>
 
      <body>
+        <div class="sidebar">
+            <h1>kai 가외, <br>bai 바위, <br>bo 보</h1>
+            <a href="index.html">Play</a>
+            <a href="#">Leaderboard</a>
+
+            <a href="passwordcheckerhtml.html">Login</a>
+        </div>
+        <div id="title"><h1 >leaderboard 리더 보드</h1></div>
+
         <table id="RPSTable">
             <thread>
                 <tr>
-                    <th>Name</th>
-                    <th onclick="sortColumn('Score')">Score</th>
+                    <th id="name">Name</th>
+                    <th>Wins</th>
 
 
                 </tr>
@@ -25,6 +36,8 @@
         </table>
 
     </body>
+
+
 
 
 </html>
